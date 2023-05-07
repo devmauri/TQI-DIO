@@ -1,0 +1,21 @@
+version: '3.9'
+services:
+  apache:
+    #utiliza a ultima imagem do apache
+    image: httpd:latest
+    #nomeia  o container que será gerado com comando docker-compose up -d 
+    container_name: apache-teste
+    #espelha as portas 80 do host com 80 do guest
+    ports:
+      -"80:80"
+    #os arquivos da aplicação devem ser inseridos nesse volume myapp
+    volumes:
+      -myapp:/usr/local/apache2/htdocs/
+volumes:
+  #cria o volume myapp.
+  myapp:
+  # Eles podem ser acessados pelo host no endereço
+  #/var/docker/volumes  ->para linux
+  #\\wsl.localhost\docker-desktop-data\version-pack-data\community\docker\volumes ->para windows
+  #\\wsl$\docker-desktop-data\data\docker\volumes ->para windows versões mais novas com wsl2 
+  
